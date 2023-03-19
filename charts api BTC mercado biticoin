@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/styles.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js" integrity="sha512-6ycb740zW0kYa7KrZGokoYKmeSaErFLgfcTCrzZCAgicdjgfQRY6DBIuL0bQC7YdSlHzEUBc6tcVJ5p5/q+f1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<title>Document</title>
+</head>
+<body>
+    <header>
+			
+		<img src="img/logo.png" alt="">
+			
+	</header>	
+     <main>
+          <canvas class="charts"></canvas>
+     	<script>
+
+               function startBTC(){
+                    setTimeout(function(){
+                         fetch('https://www.mercadobitcoin.net/api/BTC/ticker/')
+                         .then((resp) => resp.json())
+                         .then(function(data){
+                              console.log(data)
+                         })
+                         startBTC();                    
+                    },3000)
+               }
+               startBTC();
+
+               let chart_btc = document.getElementsByClassName('charts');
+               
+               let chatGraph = new Chart(chart_btc,{
+                   type: 'line',
+                   data: {
+                       labels: ['5','10','15','20','25','30','35','40','45','50','55','60'],
+                       datasets: [{
+                          label: 'Estatiticas BTC',
+                          data: [5,10,5,14,20,6,4,12,15,5,10],
+                          borderWidth: 2,
+                          borderColor: 'rgba(77,166,253,0.85)',
+                          backgroundColor: 'transparent',
+                       }]
+                   }
+               });    
+          </script>
+     </main>
+     <script src="js/scripts.js"></script>
+</body>
+</html>
